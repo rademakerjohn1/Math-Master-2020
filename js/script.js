@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             seconds--;
             document.getElementById("timer").innerHTML = `Time: ${seconds}`;
             if (seconds === 0) endQuiz(timer)
-        }, 100)
+        }, 1000)
     }
 
     function questionInit() {
