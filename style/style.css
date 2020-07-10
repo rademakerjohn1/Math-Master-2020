@@ -1,0 +1,102 @@
+
+body {
+    margin: auto;
+    text-align: center;
+    background-color: #e9ecef;
+}
+
+.jumbotron {
+    background-color: transparent;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+.card {
+    margin: auto;
+    width: 50%;
+    padding: 50px;
+    box-shadow: 5px 5px 5px;
+}
+
+button {
+    border: none;
+}
+
+.operator-chooser, .difficulty-chooser {
+    height: 75px;
+    margin: 5px 2px 25px;
+
+}
+
+.difficulty-chooser {
+    margin-bottom: 25px;
+}
+
+#configure-settings,
+#difficulty-buttons {
+    margin: auto;
+}
+
+form {
+    margin: 45px auto;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid grey;
+    caret-color: white;
+    font-size: 36px;
+    width: 25%;
+}
+
+input:focus {
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: transparent;
+    caret-color: grey;
+}
+
+#timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
+
+#corner-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    }
+
+#configure-settings {
+    padding: 0px 75px;
+}
+
+#question-section, 
+#feedback-section,
+#difficulty-buttons {
+    display: none;
+}
+
+em {
+    color: slategray;
+}
+
+label {
+    margin-right: 5px;
+}
+
+#readout {
+    margin-top: 50px;
+}
+
+.alert {
+    display: none;
+    width: 50%;
+    margin: 25px auto;
+}

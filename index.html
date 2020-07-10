@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+
+    <!--Stats link and timer -->
+    <a id="corner-link" href="stats.html">See Stats</a>
+    <p id="timer"></p>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Math Master 2020</h1>
+            <p class="lead">Practice your math skills and track your progress!</p>
+        </div>
+    </div>
+
+    <!-- Configuration Buttons -->
+    <div id="configure-settings">
+        
+        <div id="operator-buttons">
+            <div class="row justify-content-md-center">
+                <button id="+" class="col-xs-12 col-md  operator-chooser btn-primary">Addition</button>
+                <button id="-" class="col-xs-12 col-md  operator-chooser btn-primary">Subtraction</button>
+                <button id="*" class="col-xs-12 col-md  operator-chooser btn-primary">Multiplication</button>
+                <button id="/" class="col-xs-12 col-md  operator-chooser btn-primary">Division</button>
+                <button id="mixed" class="col-xs-12 col-md operator-chooser btn-primary">Mixed</button>
+            </div>
+            <em>Choose your operation</em>
+        </div>
+
+        <div id="difficulty-buttons">
+            <div class="row justify-content-md-center">
+                <button id="easy" class="col-xs-12 col-md-3 difficulty-chooser btn-success">Easy</button>
+                <button id="medium" class="col-xs-12 col-md-3 difficulty-chooser btn-success">Medium</button>
+                <button id="hard" class="col-xs-12 col-md-3 difficulty-chooser btn-success">Hard</button>
+            </div>
+            <em>Choose your difficulty</em>
+        </div>
+
+    </div>
+
+    <!-- Question Card -->
+    <div id="question-section">
+        <div class="card">
+            <h1 id="question"></h1>
+        </div>
+        <!-- Answer Input -->
+        <form>
+            <label for="user-answer"><em>Answer:</em></label>
+            <input type="text" name="user-answer" id="user-answer">
+            <button id="answer-btn" class="btn-primary">Submit</button>
+        </form>
+            <a href="index.html">Quit</a>
+            <div id="answer-alert" class="alert alert-success" role="alert"></div>
+    </div>
+    <!-- Feedback Section -->
+    <div id="feedback-section">
+        <h3 id="readout"></h3>
+        <form>
+            <label for="user-name"><em>Enter your first and last initals:</em></label>
+            <input type="text" id="user-name" name="user-name" maxlength="2">
+            <button id="user-name-btn" class="btn-danger" >Submit</button>
+        </form>
+        <a href="index.html">Quit</a>
+        <div id="name-alert" class="alert alert-danger" role="alert"></div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
