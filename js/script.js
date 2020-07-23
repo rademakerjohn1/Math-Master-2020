@@ -9,9 +9,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let operator;
     let correct;
     let incorrect;
+    let numbers;
 
     let mixed = false;
 
+    // Settings configuration
     for (const operatorBtn of operatorBtns) {
         operatorBtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -24,11 +26,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
     for (const difficultyBtn of difficultyBtns) {
         difficultyBtn.addEventListener("click", function (event) {
             event.preventDefault();
-            timer();
-            document.getElementById("corner-link").removeAttribute("href");
-            difficulty = difficultyBtn.id;
-            toggleSectionDisplay("configure-settings", "question-section");
-            questionInit()
+            setTimeout(() => {
+                timer();
+                document.getElementById("corner-link").removeAttribute("href");
+                difficulty = difficultyBtn.id;
+                toggleSectionDisplay("menu", "question-section");
+                questionInit()
+            }, 1000);
+
         });
     }
 
@@ -49,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function questionInit() {
+        numbers = [];
         document.getElementById("user-answer").value = "";
         if (mixed) {
             let operatorSet = ["+", "-", "*", "/"];
@@ -112,7 +118,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function initEvaluate(num1, num2, operator) {
         let result = evaluateResult(num1, num2, operator);
         if (!result) questionInit();
-        else renderQuestion(num1, num2, operator);
+        else {
+            numbers.push(num1, num2);
+            renderQuestion(num1, num2, operator);
+        } 
     }
 
     function evaluateResult(num1, num2, operation) {
@@ -141,21 +150,44 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function renderQuestion(num1, num2, operator) {
-        document.getElementById("question").innerHTML = `${num1} ${operator} ${num2}`;
+
+        if (operator === "*") {
+            renderOperator = "x";
+        }  else if (operator === "/") {
+            renderOperator = "&#247;"
+        }  else renderOperator = operator;
+        
+        if (difficulty === "easy") {
+            document.getElementById("question").innerHTML = `${num1} ${renderOperator} ${num2}`;
+        } 
+        
+        else if ((difficulty === 'medium' || difficulty === 'hard') && operator === "/") {
+            let span = document.createElement("span");
+            document.getElementById("question").innerHTML = `${num2}`;
+            document.getElementById("question").appendChild(span);
+            span.innerHTML = num1;
+        }
+        
+        else {
+            document.getElementById("question").innerHTML = `${num1}<br>
+             ${renderOperator} ${num2}<br><hr>`
+             console.log(document.getElementById("question").innerHTML);
+        }
+
         document.getElementById("user-answer").focus();
     }
 
     document.getElementById("answer-btn").addEventListener("click", function (event) {
         event.preventDefault();
-        let answer = eval(document.getElementById("question").innerHTML);
+        let answer = eval(`${numbers[0]} ${operator} ${numbers[1]}`)
         let userAnswer = parseInt(document.getElementById("user-answer").value);
         checkUserAnswer(answer, userAnswer);
     })
 
     function checkUserAnswer(answerNum, userNum) {
         if (!userNum || userNum === NaN) {
-            document.getElementById("answer-alert").innerHTML = "Please enter a number!";
             alertClassToggle("answer-alert", "alert-success", "alert-danger");
+            document.getElementById("answer-alert").innerHTML = "Please enter a number!";
         } else {
             if (userNum !== answerNum) {
                 alertClassToggle("answer-alert", "alert-success", "alert-danger");
@@ -176,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById(alert).classList.remove(a);
             document.getElementById(alert).classList.add(b);
         }
+        else return;
     }
 
     function alertDisplayToggle(id) {
@@ -219,25 +252,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function formatTime() {
         let time = new Date(Date.now()).toLocaleString().split(",")[1].trim();
         let arr = time.split(":")
-        console.log(arr);
         return `${arr[0]}:${arr[1]} ${arr[2].slice(3)}`;
     }
 
     document.getElementById("user-name-btn").addEventListener("click", function (event) {
 
         event.preventDefault();
-
         if (mixed) operator = "mixed";
-
         let userName = document.getElementById("user-name").value;
-        
         if (!userName || userName.length === 1 || !isNaN(userName)) {
             document.getElementById("name-alert").innerHTML = "Please enter your first and last initials!";
             document.getElementById("name-alert").style.display = "block";
             alertDisplayToggle("name-alert");
             return;
         }
-
         var userStats = {
             user: userName,
             operation: operator,
@@ -248,7 +276,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             date: new Date(Date.now()).toLocaleString().split(",")[0],
             time: formatTime()
         };
-
         stats.push(userStats);
         window.localStorage.setItem('stats', JSON.stringify(stats));
         window.location.href = "stats.html"

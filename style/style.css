@@ -2,43 +2,70 @@
 body {
     margin: auto;
     text-align: center;
-    background-color: #e9ecef;
+    background-image: linear-gradient(45deg, rgb(189, 247, 191), cyan, rgb(44, 237, 201))
+}
+
+#wrapper {
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
 }
 
 .jumbotron {
     background-color: transparent;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    margin-bottom: 25px;
+    padding: 0px;
 }
 
-.display-4 {
+.jumbotron h1 {
+    font-family: 'Righteous', cursive;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-size: 7.5em;
+    color: #007bff;
+    text-shadow: 5px 5px  white;
     font-weight: bold;
 }
 
-.card {
-    margin: auto;
-    width: 50%;
-    padding: 50px;
-    box-shadow: 5px 5px 5px;
+.jumbotron h2 {
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: bold;
 }
 
 button {
     border: none;
 }
 
+#configure-settings {
+    padding: 0px 75px;
+}
+
 .operator-chooser, .difficulty-chooser {
-    height: 75px;
-    margin: 5px 2px 25px;
-
+    font-family: 'Righteous', cursive;
+    text-transform: uppercase;
+    margin: 5px;
+    font-size: 20px;
+    min-width: 180px;
+    padding: 25px 0px;
+    background-color:#ff7050;
 }
 
-.difficulty-chooser {
-    margin-bottom: 25px;
+.btn-primary:not(:disabled):not(.disabled):active,
+.operator-chooser:hover, .difficulty-chooser:hover,
+.operator-chooser:active, .difficulty-chooser:active,
+.operator-chooser:focus, .difficulty-chooser:focus {
+    border: none;
+    background-color: #ff3508;
+    outline: none;
 }
 
-#configure-settings,
-#difficulty-buttons {
+.card {
     margin: auto;
+    background-color: transparent;
+    border: none;
 }
 
 form {
@@ -48,17 +75,13 @@ form {
 input {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid grey;
-    caret-color: white;
     font-size: 36px;
     width: 25%;
 }
 
 input:focus {
     border: none;
-    border-bottom: 1px solid grey;
     outline: transparent;
-    caret-color: grey;
 }
 
 #timer {
@@ -73,18 +96,38 @@ input:focus {
     left: 10px;
     }
 
-#configure-settings {
-    padding: 0px 75px;
-}
-
 #question-section, 
 #feedback-section,
 #difficulty-buttons {
     display: none;
 }
 
+#question-section div {
+    margin: auto;
+}
+
+hr {
+    border: none;
+    height: 10px;
+    background-color: black;
+}
+
+#question {
+    font-size: 7em;
+    text-align: right;
+}
+
+span {
+    border-left: 5px solid black;
+    border-top: 5px solid black;
+    margin-left: 30px;
+    padding: 0px 30px;
+}
+
 em {
     color: slategray;
+    display: inline-block;
+    margin-top: 25px;
 }
 
 label {
@@ -97,6 +140,27 @@ label {
 
 .alert {
     display: none;
-    width: 50%;
-    margin: 25px auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.alert-danger {
+    background-color: orangered;
+    color: white;
+}
+
+.alert-success {
+    background-color: limegreen;
+    color: white;
+}
+
+#stat-wrapper {
+    height: 100vh;
+    padding: 25px;
+}
+
+table {
+    background-color: white;
 }
